@@ -1,5 +1,5 @@
 # Pataofy
-Use this app to patao your favourite person (or not)!
+Use this app to patao your favourite person (or not, not very unlike a bad-advising well-intentioned friend)!
 
 ![Demo](demo.gif)
 
