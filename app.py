@@ -2,7 +2,10 @@ from dotenv import load_dotenv
 from os import environ as env
 from rich.console import Console
 from rich.markdown import Markdown
+from tqdm import tqdm
+from time import sleep
 
+import random
 import google.generativeai as genai
 
 load_dotenv()
@@ -16,6 +19,7 @@ print('Using this app, you can patao the people around you easily!')
 
 crush = input('Whom do you want to patao?\n > ')
 
+print('Guessing gender...')
 response = ai.generate_content(f'''
 You have to guess the gender of the person with the following name.
 Respond just in one word without punctuation.
@@ -41,12 +45,18 @@ pronoun = 'him' if gender == 'male' else 'her'
 
 likes = input(f'What do you like the most about {pronoun}?\n > ')
 
+print('Getting ready...')
 response = ai.generate_content(f'''
 I like a person named "{crush}" and I want to impress {pronoun}.
 What I like the most about {pronoun} is the following: "{likes}"
 
 Using the abovementioned data and employing some unique, slightly stereotypical, and preferably dry/dark humour or just plain funny thinking, recommend a nice pickup line and a few slightly ridiculous tips to impress {pronoun}.
 ''')
+
+print('Generating advice...')
+for i in tqdm(range(100)):
+	pause = random.uniform(0, 0.5)
+	sleep(pause)
 
 tips = Markdown(response.text.strip())
 
